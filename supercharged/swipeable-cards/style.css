@@ -1,3 +1,28 @@
 * {
     box-sizing: border-box;
 }
+
+body {
+    background: #FAFAFA;
+}
+
+.cards-container {
+    width: 100%;
+    max-width: 450px;
+    margin: 0 auto;
+}
+
+.card {
+    background: #FFF;
+    height: 200px;
+    margin: 20px 0;
+    box-shadow: 0 3px 4px rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.title {
+    font-family: Arial, "Roboto";
+    font-size: 2em;
+}
