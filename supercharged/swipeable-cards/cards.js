@@ -2,6 +2,7 @@ class Cards {
     constructor() {
         this.cards = document.querySelectorAll('.card');
         this.target   = null;
+        this.draggingCard = false;
         this.pageX    = 0;
         this.currentX = 0;
         this.limitDistance = 0;
@@ -13,6 +14,8 @@ class Cards {
         this.update  = this.update.bind(this);
 
         this.addEventsListener();
+
+        requestAnimationFrame(this.update);
     }
 
     addEventsListener() {
@@ -27,6 +30,7 @@ class Cards {
         }
         // console.log('action Start', evt);
         this.target = evt.target;
+        this.draggingCard = true;
         this.target.style.willChange = 'transform';
         this.currentX = evt.pageX || evt.touches[0].pageX;
         this.limitDistance = Math.ceil(this.target.clientWidth / 2);
@@ -47,12 +51,20 @@ class Cards {
             return;
         }
         // console.log('action End', evt);
-        this.target.style.transform = 'translate(0, 0)';
-        this.target = null;
+        this.draggingCard = false;
     }
 
     update() {
-        //
+        if (!this.target) {
+            return;
+        }
+
+        if (!this.draggingCard) {
+            this.target.style.transform = 'translate(0, 0)';
+            this.target = null;
+        }
+
+        requestAnimationFrame(this.update);
     }
 }
 
