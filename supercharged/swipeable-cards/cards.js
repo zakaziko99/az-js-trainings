@@ -7,13 +7,18 @@ class Cards {
         this.limitDistance = 0;
         // console.log('we have ' + this.cards.length + ' cards');
 
+        this.onStart = this.onStart.bind(this);
+        this.onMove  = this.onMove.bind(this);
+        this.onEnd   = this.onEnd.bind(this);
+        this.update  = this.update.bind(this);
+
         this.addEventsListener();
     }
 
     addEventsListener() {
-        window.addEventListener('touchstart', this.onStart);
-        window.addEventListener('touchmove',  this.onMove);
-        window.addEventListener('touchend',   this.onEnd);
+        document.addEventListener('touchstart', this.onStart);
+        document.addEventListener('touchmove',  this.onMove);
+        document.addEventListener('touchend',   this.onEnd);
     }
 
     onStart(evt) {
@@ -22,12 +27,13 @@ class Cards {
         }
         // console.log('action Start', evt);
         this.target = evt.target;
+        this.target.style.willChange = 'transform';
         this.currentX = evt.pageX || evt.touches[0].pageX;
         this.limitDistance = Math.ceil(this.target.clientWidth / 2);
     }
 
     onMove(evt) {
-        if (this.target !== evt.target) {
+        if (!this.target) {
             return;
         }
         // console.log('action Move', evt);
@@ -37,7 +43,7 @@ class Cards {
     }
 
     onEnd(evt) {
-        if (this.target !== evt.target) {
+        if (!this.target) {
             return;
         }
         // console.log('action End', evt);
@@ -45,7 +51,7 @@ class Cards {
         this.target = null;
     }
 
-    onUpdate() {
+    update() {
         //
     }
 }
