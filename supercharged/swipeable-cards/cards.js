@@ -1,11 +1,12 @@
+'use strict';
+
 class Cards {
     constructor() {
-        this.cards = document.querySelectorAll('.card');
-        this.target   = null;
+        this.cards        = document.querySelectorAll('.card');
+        this.target       = null;
+        this.startX       = 0;
+        this.currentX     = 0;
         this.draggingCard = false;
-        this.pageX    = 0;
-        this.currentX = 0;
-        this.limitDistance = 0;
         // console.log('we have ' + this.cards.length + ' cards');
 
         this.onStart = this.onStart.bind(this);
@@ -30,20 +31,18 @@ class Cards {
         }
         // console.log('action Start', evt);
         this.target = evt.target;
+        this.currentX = evt.pageX || evt.touches[0].pageX;
+        this.startX = this.currentX;
         this.draggingCard = true;
         this.target.style.willChange = 'transform';
-        this.currentX = evt.pageX || evt.touches[0].pageX;
-        this.limitDistance = Math.ceil(this.target.clientWidth / 2);
     }
 
     onMove(evt) {
         if (!this.target) {
             return;
         }
-        // console.log('action Move', evt);
-        this.pageX = evt.pageX || evt.touches[0].pageX;
-        let distanceX = this.pageX - this.currentX;
-        this.target.style.transform = 'translate(' + (this.pageX < (window.innerWidth - 10) ? distanceX : window.innerWidth - 10 - this.currentX) + 'px, 0)';
+
+        this.currentX = evt.pageX || evt.touches[0].pageX;
     }
 
     onEnd(evt) {
@@ -55,16 +54,16 @@ class Cards {
     }
 
     update() {
+        requestAnimationFrame(this.update);
+
         if (!this.target) {
             return;
         }
 
-        if (!this.draggingCard) {
-            this.target.style.transform = 'translate(0, 0)';
-            this.target = null;
-        }
-
-        requestAnimationFrame(this.update);
+        const distanceX = this.currentX - this.startX;
+        this.target.style.transform = `translate(${distanceX}px, 0)`;
+        // if (!this.draggingCard) {
+        // }
     }
 }
 
