@@ -3,6 +3,8 @@
 }
 
 body {
+    margin: 0;
+    padding: 0;
     background: #FAFAFA;
 }
 
@@ -14,15 +16,16 @@ body {
 
 .card {
     background: #FFF;
-    height: 200px;
+    height: 160px;
     margin: 20px 0;
     box-shadow: 0 3px 4px rgba(0, 0, 0, 0.3);
     display: flex;
     align-items: center;
     justify-content: space-around;
+    cursor: pointer;
 }
 
 .title {
     font-family: Arial, "Roboto";
-    font-size: 2em;
+    font-size: 1.5em;
 }

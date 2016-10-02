@@ -6,6 +6,7 @@ class Cards {
         this.target       = null;
         this.startX       = 0;
         this.currentX     = 0;
+        this.distanceX    = 0;
         this.draggingCard = false;
         // console.log('we have ' + this.cards.length + ' cards');
 
@@ -23,17 +24,24 @@ class Cards {
         document.addEventListener('touchstart', this.onStart);
         document.addEventListener('touchmove',  this.onMove);
         document.addEventListener('touchend',   this.onEnd);
+
+        document.addEventListener('mousedown', this.onStart);
+        document.addEventListener('mousemove',  this.onMove);
+        document.addEventListener('mouseup',   this.onEnd);
     }
 
     onStart(evt) {
+        if (this.target) {
+            return;
+        }
         if (!evt.target.classList.contains('card')) {
             return;
         }
         // console.log('action Start', evt);
         this.target = evt.target;
+        this.draggingCard = true;
         this.currentX = evt.pageX || evt.touches[0].pageX;
         this.startX = this.currentX;
-        this.draggingCard = true;
         this.target.style.willChange = 'transform';
     }
 
@@ -60,11 +68,25 @@ class Cards {
             return;
         }
 
-        const distanceX = this.currentX - this.startX;
-        this.target.style.transform = `translate(${distanceX}px, 0)`;
-        // if (!this.draggingCard) {
-        // }
+        if (this.draggingCard) {
+            this.distanceX = this.currentX - this.startX;
+        } else {
+            this.distanceX -= (this.distanceX) / 4;
+        }
+
+        const isNearlyAtStart = Math.abs(this.distanceX) < 0.01;
+
+        this.target.style.transform = `translate(${isNearlyAtStart ? 0 : this.distanceX}px, 0)`;
+
+        if (isNearlyAtStart && !this.draggingCard) {
+            this.target.style.transform = 'none';
+            this.target.style.willChange = 'initial';
+
+            this.target = null;
+        }
     }
 }
 
 window.addEventListener('load', () => new Cards());
+
+
