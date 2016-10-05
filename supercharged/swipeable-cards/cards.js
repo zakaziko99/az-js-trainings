@@ -7,6 +7,7 @@ class Cards {
         this.startX       = 0;
         this.currentX     = 0;
         this.distanceX    = 0;
+        this.targetBCR    = null;
         this.draggingCard = false;
         // console.log('we have ' + this.cards.length + ' cards');
 
@@ -40,6 +41,7 @@ class Cards {
         // console.log('action Start', evt);
         this.target = evt.target;
         this.draggingCard = true;
+        this.targetBCR = this.target.getBoundingClientRect();
         this.currentX = evt.pageX || evt.touches[0].pageX;
         this.startX = this.currentX;
         this.target.style.willChange = 'transform';
