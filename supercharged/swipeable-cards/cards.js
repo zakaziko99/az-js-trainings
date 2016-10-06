@@ -35,11 +35,18 @@ class Cards {
         if (this.target) {
             return;
         }
-        if (!evt.target.classList.contains('card')) {
+        if (
+            !evt.target.classList.contains('card') &&
+            !evt.target.parentNode.classList.contains('card')
+            ) {
             return;
         }
         // console.log('action Start', evt);
-        this.target = evt.target;
+        if (evt.target.classList.contains('card')) {
+            this.target = evt.target;
+        } else {
+            this.target = evt.target.parentNode;
+        }
         this.draggingCard = true;
         this.targetBCR = this.target.getBoundingClientRect();
         this.currentX = evt.pageX || evt.touches[0].pageX;
