@@ -32,12 +32,15 @@ class Cards {
     }
 
     onStart(evt) {
+        let parentNode = evt.target.parentNode;
+        console.dir(evt.target);
+
         if (this.target) {
             return;
         }
         if (
             !evt.target.classList.contains('card') &&
-            !evt.target.parentNode.classList.contains('card')
+            !(parentNode && parentNode.classList && parentNode.classList.contains('card'))
             ) {
             return;
         }
