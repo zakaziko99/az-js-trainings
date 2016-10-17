@@ -1,5 +1,6 @@
 'use strict';
 
+// to add some es6 syntaxes for tomorrow
 class Cards {
     constructor() {
         this.cards        = document.querySelectorAll('.card');
@@ -33,17 +34,19 @@ class Cards {
 
     onStart(evt) {
         let parentNode = evt.target.parentNode;
-        console.dir(evt.target);
+        // console.dir(evt.target);
 
         if (this.target) {
             return;
         }
+
         if (
             !evt.target.classList.contains('card') &&
             !(parentNode && parentNode.classList && parentNode.classList.contains('card'))
             ) {
             return;
         }
+
         // console.log('action Start', evt);
         if (evt.target.classList.contains('card')) {
             this.target = evt.target;
