@@ -27,3 +27,27 @@
 //                 var mySymbol  = new Symbol('foo')   // throw an error
 // But in this case, the returned value will be an 'Object' Type with
 // the property '[[PrimitiveValue]]' having the value set in.
+
+// An 'Operator' is a special function that is syntactically written differently,
+// generally operators take two parameters and return one result.
+
+// When multiple operators are used, JavaScirpt take first the one that has the higher
+// 'operator precedence' by order then the next.
+// When two operators have the same 'operator precedence', then JavaScript look to the
+// 'operator associativity': that means it look what order operator functions get called in:
+// left-to-Right, or, right-to-left
+// ex:  var a = 3 + 4 * 5;    // the operator '*' has higher operator precedence than '+'
+//                            // the operator '+' has higher operator precedence than '='
+//                            // the operator '=' has operator associativity 'right-to-left'
+//                            // the operators '+' & '*' have operator associativity 'left-to-right'
+//                            // therefore a is equal to 23
+
+// The full table of Operator precedence & associativity:
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Operator_Precedence
+
+var a = 5;
+var b = 3;
+var c = 8;
+
+c = b = a;
+console.log(a, b, c);         // 5, 5, 5
