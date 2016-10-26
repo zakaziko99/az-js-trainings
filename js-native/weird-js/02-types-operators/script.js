@@ -44,10 +44,52 @@
 
 // The full table of Operator precedence & associativity:
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Operator_Precedence
-
+console.log('+++ Operators precedence & associativity +++');
 var a = 5;
 var b = 3;
 var c = 8;
 
 c = b = a;
 console.log(a, b, c);         // 5, 5, 5
+
+// When JavaScript execute a command that have operators, and finds that the kind of operation
+// is not compatible with the given values. Due to 'The Dynamic Typing' approach, JavaScript
+// convert some values to complete the operation.
+// This process is called "Coercion"
+console.log('+++ Coercion +++');
+var d = 0 + '2';
+console.log(d);              // 02
+
+// For Comparaison Operators, JavaScript behaves a little bit strangely, when it convert some values
+// to complete the process:
+console.log('+++ Comparaison operators +++');
+console.log(true > 5);       // false, true converted to 1, then 1 > 5 is false of course
+console.log(8 < 6 < 4)       // true, why? because 8 < 6 is false then converted to 0, 0 < 4 is true
+
+// For the equality comparaison, it is a little bit tough. There is two kind of equality operators:
+// The 'Loose Equality' operator: '=='
+// It's compare the values only:
+console.log('+++ Loose equality compraison +++');
+console.log(1 == 0);            // false
+console.log(1 == true);         // true
+console.log(false == 0);        // true
+console.log(null == 0);         // false, null is a special falsy value, but never equal to zero
+console.log(undefined == 0);    // false, undefined is another falsy value, never equal to zero too
+console.log(undefined == null); // true, Javascript interprets the two values as a lack of existence
+console.log('' == false);       // true, empty string converted to a number is always 0
+console.log('text' == true);    // false, if a string have alphabetic characters, is considered NaN
+                                // NaN: a special value that mean 'Not A Number'
+// The 'Strict Equality' operator: '==='
+// It's compare both, the values and types
+console.log('+++ Strict equality compraison +++');
+console.log(1 === 0);            // false
+console.log(1 === true);         // false, not the same type
+console.log(false === 0);        // false, not the same type
+console.log(null === 0);         // false
+console.log(undefined === 0);    // false
+console.log(undefined === null); // false, not the same type
+console.log('' === false);       // false, not the same type
+console.log('text' === true);    // false
+
+// To have more info on 'Equality comparaisons and Sameness':
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Equality_comparisons_and_sameness
