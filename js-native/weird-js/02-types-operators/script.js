@@ -64,7 +64,7 @@ console.log(d);              // 02
 // to complete the process:
 console.log('+++ Comparaison operators +++');
 console.log(true > 5);       // false, true converted to 1, then 1 > 5 is false of course
-console.log(8 < 6 < 4)       // true, why? because 8 < 6 is false then converted to 0, 0 < 4 is true
+console.log(8 < 6 < 4);      // true, why? because 8 < 6 is false then converted to 0, 0 < 4 is true
 
 // For the equality comparaison, it is a little bit tough. There is two kind of equality operators:
 // The 'Loose Equality' operator: '=='
@@ -93,3 +93,15 @@ console.log('text' === true);    // false
 
 // To have more info on 'Equality comparaisons and Sameness':
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Equality_comparisons_and_sameness
+
+// We can use the 'Logical operators' like '&&' or '||' to set default values
+console.log('+++ Default values +++');
+console.log(1 || 0);                  // 1 is the only truthy value
+console.log(undefined || 'my value'); // my value, undefined is falsy, but the string is not
+
+function callYou(name) {
+    console.log('Hi ' + (name || 'me'));
+}
+
+callYou('Dan'); // Hi Dan, the name variable is passed
+callYou();      // Hi me, this is useful if we want default value in case of no parameters
