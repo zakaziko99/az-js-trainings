@@ -70,26 +70,26 @@ console.log(8 < 6 < 4);      // true, why? because 8 < 6 is false then converted
 // The 'Loose Equality' operator: '=='
 // It's compare the values only:
 console.log('+++ Loose equality compraison +++');
-console.log(1 == 0);            // false
-console.log(1 == true);         // true
-console.log(false == 0);        // true
-console.log(null == 0);         // false, null is a special falsy value, but never equal to zero
+console.log(1         == 0);    // false
+console.log(1         == true); // true
+console.log(false     == 0);    // true
+console.log(null      == 0);    // false, null is a special falsy value, but never equal to zero
 console.log(undefined == 0);    // false, undefined is another falsy value, never equal to zero too
 console.log(undefined == null); // true, Javascript interprets the two values as a lack of existence
-console.log('' == false);       // true, empty string converted to a number is always 0
-console.log('text' == true);    // false, if a string have alphabetic characters, is considered NaN
+console.log(false     == '');   // true, empty string converted to a number is always 0
+console.log('text'    == true); // false, if a string have alphabetic characters, is considered NaN
                                 // NaN: a special value that mean 'Not A Number'
 // The 'Strict Equality' operator: '==='
 // It's compare both, the values and types
 console.log('+++ Strict equality compraison +++');
-console.log(1 === 0);            // false
-console.log(1 === true);         // false, not the same type
-console.log(false === 0);        // false, not the same type
-console.log(null === 0);         // false
-console.log(undefined === 0);    // false
-console.log(undefined === null); // false, not the same type
-console.log('' === false);       // false, not the same type
-console.log('text' === true);    // false
+console.log(1         === 0);     // false
+console.log(1         === true);  // false, not the same type
+console.log(false     === 0);     // false, not the same type
+console.log(null      === 0);     // false
+console.log(undefined === 0);     // false
+console.log(undefined === null);  // false, not the same type
+console.log(''        === false); // false, not the same type
+console.log('text'    === true);  // false
 
 // To have more info on 'Equality comparaisons and Sameness':
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Equality_comparisons_and_sameness
